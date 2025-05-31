@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Völund - Code Sandbox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      :root {
+        /* Light theme variables */
+        --light-bg-color: #ffffff;
+        --light-text-color: #333333;
+        --light-toolbar-bg: #f5f5f5;
+        --light-border-color: #dddddd;
+        --light-tab-bg: #f0f0f0;
+        --light-tab-active-bg: #ffffff;
+        --light-results-bg: #f9f9f9;
+        --light-toggle-bg: #e0e0e0;
+        --light-toggle-active-bg: #ffffff;
+        --light-hover-bg: #e0e0e0;
+
+        /* Dark theme variables */
+        --dark-bg-color: #1e1e1e;
+        --dark-text-color: #d4d4d4;
+        --dark-toolbar-bg: #333333;
+        --dark-border-color: #555555;
+        --dark-tab-bg: #252526;
+        --dark-tab-active-bg: #1e1e1e;
+        --dark-results-bg: #252526;
+        --dark-toggle-bg: #3c3c3c;
+        --dark-toggle-active-bg: #1e1e1e;
+        --dark-hover-bg: #3c3c3c;
+
+        /* Default to light theme */
+        --bg-color: var(--light-bg-color);
+        --text-color: var(--light-text-color);
+        --toolbar-bg: var(--light-toolbar-bg);
+        --border-color: var(--light-border-color);
+        --tab-bg: var(--light-tab-bg);
+        --tab-active-bg: var(--light-tab-active-bg);
+        --results-bg: var(--light-results-bg);
+        --toggle-bg: var(--light-toggle-bg);
+        --toggle-active-bg: var(--light-toggle-active-bg);
+        --hover-bg: var(--light-hover-bg);
+      }
+
+      body.dark-theme {
+        --bg-color: var(--dark-bg-color);
+        --text-color: var(--dark-text-color);
+        --toolbar-bg: var(--dark-toolbar-bg);
+        --border-color: var(--dark-border-color);
+        --tab-bg: var(--dark-tab-bg);
+        --tab-active-bg: var(--dark-tab-active-bg);
+        --results-bg: var(--dark-results-bg);
+        --toggle-bg: var(--dark-toggle-bg);
+        --toggle-active-bg: var(--dark-toggle-active-bg);
+        --hover-bg: var(--dark-hover-bg);
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        overflow: hidden;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+      }
+      #app {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      #sandbox-containers {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .toolbar {
+        display: flex;
+        padding: 10px;
+        background-color: var(--toolbar-bg);
+        border-bottom: 1px solid var(--border-color);
+        align-items: center;
+        justify-content: space-between;
+      }
+      .toolbar-left, .toolbar-right {
+        display: flex;
+        align-items: center;
+      }
+      .app-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-right: 15px;
+        color: var(--text-color);
+      }
+      .language-toggle {
+        display: flex;
+        align-items: center;
+        background-color: var(--toggle-bg);
+        border-radius: 20px;
+        padding: 4px;
+        margin-right: 10px;
+      }
+      .language-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .language-toggle-btn.active {
+        background-color: var(--toggle-active-bg);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .language-toggle-btn i {
+        font-size: 16px;
+      }
+      .version-selector {
+        margin-right: 10px;
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: none;
+      }
+      .version-selector.visible {
+        display: block;
+      }
+      .display-toggle, .theme-toggle {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+      }
+      .display-toggle-btn, .theme-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-left: 5px;
+        color: var(--text-color);
+      }
+      .display-toggle-btn.active, .theme-toggle-btn.active {
+        background-color: #4CAF50;
+        color: white;
+      }
+      .display-toggle-btn:hover, .theme-toggle-btn:hover {
+        background-color: var(--hover-bg);
+      }
+      .display-toggle-btn.active:hover, .theme-toggle-btn.active:hover {
+        background-color: #45a049;
+      }
+      .tab-bar {
+        display: flex;
+        background-color: var(--toggle-bg);
+        border-bottom: 1px solid var(--border-color);
+        overflow-x: auto;
+      }
+      .tab {
+        padding: 8px 15px;
+        background-color: var(--tab-bg);
+        border-right: 1px solid var(--border-color);
+        cursor: pointer;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        color: var(--text-color);
+      }
+      .tab.active {
+        background-color: var(--tab-active-bg);
+        border-bottom: 2px solid #4CAF50;
+      }
+      .tab-close {
+        margin-left: 8px;
+        font-size: 14px;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        border-radius: 50%;
+      }
+      .tab-close:hover {
+        background-color: var(--hover-bg);
+      }
+      .new-tab-button {
+        padding: 8px 12px;
+        background-color: var(--toggle-bg);
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        color: var(--text-color);
+      }
+      .new-tab-button:hover {
+        background-color: var(--hover-bg);
+      }
+      .toolbar select, .toolbar button {
+        margin-right: 10px;
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+      }
+      .toolbar button {
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+      }
+      .toolbar button:hover {
+        background-color: #45a049;
+      }
+      .main-container {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-color);
+      }
+      .main-container.horizontal {
+        flex-direction: row;
+      }
+      .main-container.vertical {
+        flex-direction: column;
+      }
+      .editor-container, .results-container {
+        overflow: auto;
+      }
+      .editor-container {
+        flex: 3;
+        min-height: 200px;
+      }
+      .results-container {
+        flex: 1;
+        padding: 10px;
+        background-color: var(--results-bg);
+        border-left: 1px solid var(--border-color);
+        white-space: pre-wrap;
+        font-family: monospace;
+        overflow: auto;
+        color: var(--text-color);
+      }
+      .main-container.vertical .results-container {
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+      }
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        padding: 20px;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 600px;
+        max-height: 80%;
+        overflow: auto;
+        border: 1px solid var(--border-color);
+      }
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      .modal-header h2 {
+        margin: 0;
+      }
+      .close-button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <div class="app-title">Völund</div>
+          <div class="language-toggle">
+            <div class="language-toggle-btn" data-language="ts">
+              <i class="fab fa-js"></i>
+            </div>
+            <div class="language-toggle-btn" data-language="py">
+              <i class="fab fa-python"></i>
+            </div>
+          </div>
+          <select id="ts-version-selector" class="version-selector">
+            <option value="system">TypeScript Default</option>
+            <!-- Will be populated dynamically -->
+          </select>
+          <select id="py-version-selector" class="version-selector">
+            <option value="system">Python Default</option>
+            <!-- Will be populated dynamically -->
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <div class="display-toggle">
+            <div class="display-toggle-btn" data-layout="horizontal" title="Side by Side">
+              <i class="fas fa-columns"></i>
+            </div>
+            <div class="display-toggle-btn" data-layout="vertical" title="Top and Bottom">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+          <div class="theme-toggle">
+            <div class="theme-toggle-btn" data-theme="vs" title="Light Theme">
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="theme-toggle-btn" data-theme="vs-dark" title="Dark Theme">
+              <i class="fas fa-moon"></i>
+            </div>
+            <div class="theme-toggle-btn" data-theme="auto" title="Auto Theme">
+              <i class="fas fa-adjust"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <button class="new-tab-button" id="new-tab-button">+</button>
+      </div>
+      <div id="sandbox-containers">
+        <!-- Sandbox containers will be created dynamically -->
+      </div>
+    </div>
+
+
+
+    <script type="module" src="/src/renderer.ts"></script>
+  </body>
+</html>

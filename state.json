@@ -1,0 +1,234 @@
+{
+  "features": [
+    {
+      "title": "Create Project README",
+      "description": "Create a readme that explains the project, how to use it, and how it was made",
+      "status": "done",
+      "lastUpdate": "2023-11-16T10:00:00.000Z",
+      "details": "Created a comprehensive README.md file that explains what Völund is, its features, installation instructions, usage guide, how it was built (architecture and technologies), project structure, contributing guidelines, and license information. This documentation will help users understand and use the application, as well as provide guidance for potential contributors."
+    },
+    {
+      "title": "Enhanced GitHub Release Configuration",
+      "description": "Improve the GitHub release configuration for better cross-platform support",
+      "status": "done",
+      "lastUpdate": "2023-11-15T10:00:00.000Z",
+      "details": "Enhanced the GitHub release configuration by fixing the repository name, adding proper metadata to package.json, improving packagerConfig for macOS with appBundleId and appCategoryType, adding documentation about GitHub token requirements, and enhancing the Linux package makers (MakerDeb and MakerRpm) with detailed configurations. These changes ensure better cross-platform support and a smoother release process."
+    },
+    {
+      "title": "GitHub Installation",
+      "description": "Allow installation from GitHub with username thomassloboda",
+      "status": "done",
+      "lastUpdate": "2023-06-26T10:00:00.000Z",
+      "details": "Configured the application to be publishable to GitHub releases by adding the GitHub publisher to the Electron Forge configuration. This allows users to install the application directly from GitHub releases. The publisher is configured with the username 'thomassloboda' and the repository name 'runner'. The application can now be published to GitHub using the 'npm run publish' command."
+    },
+    {
+      "title": "Tab Renaming",
+      "description": "Allow users to rename tabs by double-clicking on the tab title",
+      "status": "done",
+      "lastUpdate": "2023-06-25T10:00:00.000Z",
+      "details": "Implemented tab renaming functionality that allows users to rename tabs by double-clicking on the tab title. Added a makeTabRenamable function that adds a double-click event listener to tab title spans, which replaces the span with an input field for editing. The new title is saved when the user presses Enter or clicks outside the input field, and the tab object is updated and saved to the database. This enhances the user experience by allowing better organization of tabs."
+    },
+    {
+      "title": "Update Guidelines",
+      "description": "Update the guidelines to reflect the current state of the project",
+      "status": "done",
+      "lastUpdate": "2023-06-24T10:00:00.000Z",
+      "details": "Updated the guidelines.md file to reflect the current state of the project, including the removal of the snippets feature, the addition of app-wide theming, the enhancement of the UI with toggle buttons and icons, and the persistence of tabs across sessions."
+    },
+    {
+      "title": "Fix Editor Theme",
+      "description": "Set editor theme based on SQLite data",
+      "status": "done",
+      "lastUpdate": "2023-06-23T10:00:00.000Z",
+      "details": "Fixed an issue where the editor was automatically set to light theme even when the whole app was on dark theme. Modified the editor initialization to ensure it uses the theme from SQLite database settings."
+    },
+    {
+      "title": "Remove Snippets Feature",
+      "description": "Remove the snippets feature as it doesn't seem to work",
+      "status": "done",
+      "lastUpdate": "2023-06-22T10:00:00.000Z",
+      "details": "Removed the snippets feature from the application as it wasn't working correctly. This included removing the snippets button, modal, and related UI elements, as well as removing the snippets-related code from the renderer, preload, and IPC handlers. The feature may be re-implemented in the future once the issues are resolved."
+    },
+    {
+      "title": "Split Settings into Separate Keys",
+      "description": "Store each setting in a separate database key for better organization and performance",
+      "status": "done",
+      "lastUpdate": "2023-06-21T10:00:00.000Z",
+      "details": "Refactored the settings storage mechanism to store each setting under its own key in the SQLite database, rather than storing all settings under a single 'config' key. Added new use cases (getSetting and setSetting) for getting and setting individual settings, while maintaining backward compatibility with the existing getSettings and saveSettings functions. Updated the renderer code to use the new functions for better performance and organization."
+    },
+    {
+      "title": "Improved Settings Storage and Retrieval",
+      "description": "Ensure settings are properly saved to and read from SQLite database",
+      "status": "done",
+      "lastUpdate": "2023-06-20T10:00:00.000Z",
+      "details": "Enhanced the settings storage and retrieval mechanism to ensure all settings are properly saved to and read from the SQLite database. Modified the getSettings function to properly deserialize settings into Setting objects while preserving all properties. This ensures that settings are consistently applied across the application and persist between sessions."
+    },
+    {
+      "title": "Save Latest Theme and Language/Version",
+      "description": "Save the latest theme and language/version used by the user",
+      "status": "done",
+      "lastUpdate": "2023-06-19T10:00:00.000Z",
+      "details": "Implemented functionality to save the latest theme and language/version used by the user. The application now remembers the user's preferences and applies them when creating new tabs or restarting the application. This enhances the user experience by maintaining consistency across sessions."
+    },
+    {
+      "title": "Update Guidelines",
+      "description": "Update the guidelines to reflect the current state of the project",
+      "status": "done",
+      "lastUpdate": "2023-06-18T10:00:00.000Z",
+      "details": "Updated the guidelines.md file to reflect the current state of the project, including the rebranding to Völund, the tab system, enhanced UI, and other features implemented since the initial guidelines were written."
+    },
+    {
+      "title": "Rebranding to Völund",
+      "description": "Rename the project from 'Runner' to 'Völund', add a title to the top bar, and use volund.png as app icon",
+      "status": "done",
+      "lastUpdate": "2023-06-17T10:00:00.000Z",
+      "details": "Updated the application name from 'Runner' to 'Völund' in package.json and HTML title. Added a styled title to the left of the top bar. Configured the application to use volund.png as the window icon."
+    },
+    {
+      "title": "Monaco Snippet Integration",
+      "description": "Inject user snippets as Monaco snippets for code completion",
+      "status": "removed",
+      "lastUpdate": "2023-06-16T10:00:00.000Z",
+      "details": "Implemented a system to inject user snippets as Monaco editor completion items. Snippets are now available through the editor's autocomplete feature, making them easier to use. The completion provider is updated whenever snippets are created or updated."
+    },
+    {
+      "title": "UI Simplification and App-wide Theming",
+      "description": "Remove settings button and screen, apply theme to the entire app",
+      "status": "done",
+      "lastUpdate": "2023-06-15T10:00:00.000Z",
+      "details": "Removed the settings button and screen as all settings are now available from the top bar. Applied the selected theme to the entire application, not just the Monaco editor, by using CSS variables and adding a dark-theme class to the body element."
+    },
+    {
+      "title": "Enhanced UI",
+      "description": "Replace language selector with toggle and icons, add language version selector, replace display selector with icons, add theme switch",
+      "status": "done",
+      "lastUpdate": "2023-06-14T10:00:00.000Z",
+      "details": "Implemented UI enhancements: replaced language selector with a toggle and icons for each language, added language version selector that appears based on selected language, replaced display selector with icons positioned to the right, and added a theme switch (light/dark/auto) near the display options."
+    },
+    {
+      "title": "Snippet Replacement",
+      "description": "Typing @{snippet_title} should replace @{snippet_title} with snippet code",
+      "status": "removed",
+      "lastUpdate": "2023-06-13T10:00:00.000Z",
+      "details": "Implemented real-time replacement of snippet references as the user types. When a user types '@{snippet_title}', it is immediately replaced with the corresponding snippet code. Also added a fallback mechanism that processes the entire code for snippet references before running it."
+    },
+    {
+      "title": "Sandbox",
+      "description": "Display code editor with two layout options and language selection",
+      "status": "done",
+      "lastUpdate": "2023-06-01T12:00:00.000Z",
+      "details": "Implemented Monaco Editor with language selection and layout options. Code is highlighted based on the selected language."
+    },
+    {
+      "title": "Results",
+      "description": "Evaluate code with debounce and timeout protection",
+      "status": "done",
+      "lastUpdate": "2023-06-01T12:00:00.000Z",
+      "details": "Implemented code evaluation with 1 second debounce and timeout protection. Results are displayed in the results container."
+    },
+    {
+      "title": "Settings",
+      "description": "Settings menu for managing languages and versions",
+      "status": "done",
+      "lastUpdate": "2023-06-01T12:00:00.000Z",
+      "details": "Implemented settings menu with theme, Node.js version, and Python version options. Settings are saved in the SQLite database."
+    },
+    {
+      "title": "Snippets",
+      "description": "Save and manage code snippets",
+      "status": "removed",
+      "lastUpdate": "2023-06-01T12:00:00.000Z",
+      "details": "Implemented snippets menu with the ability to save and load snippets. Snippets are saved in the SQLite database and can be referenced with @{snippet_title}."
+    },
+    {
+      "title": "Fix SQLite Native Module",
+      "description": "Fix the error with better-sqlite3 native module loading",
+      "status": "done",
+      "lastUpdate": "2023-06-02T10:00:00.000Z",
+      "details": "Fixed the error with better-sqlite3 native module by properly configuring Vite/Rollup to handle native modules and adding the AutoUnpackNativesPlugin to the forge.config.ts file."
+    },
+    {
+      "title": "Fix Electron Reference Error",
+      "description": "Fix the 'Electron is not defined' error during app load",
+      "status": "done",
+      "lastUpdate": "2023-06-03T10:00:00.000Z",
+      "details": "Fixed the 'Electron is not defined' error by updating the import statement in ipc-handlers.ts to use ES6 import syntax instead of TypeScript namespace import."
+    },
+    {
+      "title": "Fix Monaco Editor Worker Error",
+      "description": "Fix the 'Cannot read properties of undefined (reading 'toUrl')' error in Monaco Editor",
+      "status": "done",
+      "lastUpdate": "2023-06-04T10:00:00.000Z",
+      "details": "Fixed the Monaco Editor worker error by disabling workers in the Vite configuration and updating the Monaco Editor configuration in the renderer."
+    },
+    {
+      "title": "Make Editor Full Width",
+      "description": "Enhance the editor layout to provide a full-width option",
+      "status": "done",
+      "lastUpdate": "2023-06-05T10:00:00.000Z",
+      "details": "Modified the CSS to make the editor take up more space (75% in side-by-side mode) and added a new 'Full Width Editor' layout option that maximizes the editor space and minimizes the results area."
+    },
+    {
+      "title": "Set Full-Width Layout as Default",
+      "description": "Make editor+results always full window width and height",
+      "status": "done",
+      "lastUpdate": "2023-06-06T10:00:00.000Z",
+      "details": "Updated the renderer.ts to set the default layout to 'full-width' so that the editor and results take up the full window width and height by default."
+    },
+    {
+      "title": "Fix Console Output Display",
+      "description": "Fix the code execution to properly display console output",
+      "status": "done",
+      "lastUpdate": "2023-06-06T10:00:00.000Z",
+      "details": "Modified the JSRunner to capture console output by overriding the console methods in the sandbox, ensuring that console.log statements and other console methods are properly displayed in the results."
+    },
+    {
+      "title": "TypeScript Support",
+      "description": "Add support for TypeScript in the JavaScript runner",
+      "status": "done",
+      "lastUpdate": "2023-06-07T10:00:00.000Z",
+      "details": "Modified the JavaScript runner to handle TypeScript code by transpiling it to JavaScript before execution. Updated the UI to include TypeScript as a language option."
+    },
+    {
+      "title": "Tab System",
+      "description": "Allow tab creation/deletion as a new sandbox with independent language selection",
+      "status": "done",
+      "lastUpdate": "2023-06-08T10:00:00.000Z",
+      "details": "Implemented a tab system that allows users to create and delete tabs, each with its own sandbox (editor and results) and independent language selection. Each tab maintains its own state, including language, layout, and code content."
+    },
+    {
+      "title": "Simplified Layout Options",
+      "description": "Update UI to allow only Side by Side or Top and Bottom display options",
+      "status": "done",
+      "lastUpdate": "2023-06-09T10:00:00.000Z",
+      "details": "Removed the Full Width Editor option and updated the CSS to ensure both Side by Side and Top and Bottom layouts use the full width and height of the tab. Changed the default layout to Side by Side."
+    },
+    {
+      "title": "Full Window Height Tabs",
+      "description": "Make tabs content take full free window height",
+      "status": "done",
+      "lastUpdate": "2023-06-10T10:00:00.000Z",
+      "details": "Updated the CSS to make the sandbox containers take up all available space in the app container, ensuring that tabs content (editor and results) uses the full window height. This provides more space for coding and viewing results."
+    },
+    {
+      "title": "Fix Python Execution Output",
+      "description": "Fix Python execution to properly display output instead of [object Object]",
+      "status": "done",
+      "lastUpdate": "2023-06-11T10:00:00.000Z",
+      "details": "Fixed the Python runner to correctly extract stdout and stderr from the execution result object, ensuring that Python print statements are properly displayed in the results area."
+    },
+    {
+      "title": "Fix Python Buffer Output",
+      "description": "Fix Python execution to properly convert Buffer output to string",
+      "status": "done",
+      "lastUpdate": "2023-06-12T10:00:00.000Z",
+      "details": "Modified the Python runner to explicitly convert the stdout and stderr data from Buffer to string using toString(), ensuring that Python output is properly displayed in the results area."
+    }
+  ],
+  "nextTask": {
+    "title": "Add More Languages",
+    "description": "Add support for more programming languages like Ruby, Go, etc.",
+    "status": "planned",
+    "lastUpdate": "2023-06-25T10:00:00.000Z"
+  }
+}
