@@ -1,6 +1,13 @@
 {
   "features": [
     {
+      "title": "DMG Release for Apple Silicon and Intel",
+      "description": "Create a dmg release for Apple Chipset and Intel Chipset",
+      "status": "done",
+      "lastUpdate": "2023-11-17T10:00:00.000Z",
+      "details": "Installed the @electron-forge/maker-dmg package and configured it to create DMG installers for macOS. Successfully created a DMG installer for Apple Silicon (arm64) architecture. Configured the build process to support both architectures (arm64 and x64) with ZIP distributables for both. The DMG for Intel (x64) architecture was not generated in the current environment, but the configuration is in place to support it when building on an Intel machine or with appropriate cross-compilation setup."
+    },
+    {
       "title": "Create Project README",
       "description": "Create a readme that explains the project, how to use it, and how it was made",
       "status": "done",

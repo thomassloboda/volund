@@ -3,6 +3,7 @@ import {MakerSquirrel} from '@electron-forge/maker-squirrel';
 import {MakerZIP} from '@electron-forge/maker-zip';
 import {MakerDeb} from '@electron-forge/maker-deb';
 import {MakerRpm} from '@electron-forge/maker-rpm';
+import {MakerDMG} from '@electron-forge/maker-dmg';
 import {VitePlugin} from '@electron-forge/plugin-vite';
 import {FusesPlugin} from '@electron-forge/plugin-fuses';
 import {FuseV1Options, FuseVersion} from '@electron/fuses';
@@ -25,12 +26,21 @@ const config: ForgeConfig = {
             setupIcon: "./src/images/icon.ico"
         }),
         new MakerZIP({}, ['darwin']),
+        new MakerDMG({
+            format: 'ULFO',
+            name: "Völund",
+            icon: './src/images/icon.icns',
+        }, ['darwin:arm64']),
+        new MakerDMG({
+            format: 'ULFO',
+            name: "Völund",
+            icon: './src/images/icon.icns',
+        }, ['darwin:x64']),
         new MakerRpm({
             options: {
                 productName: 'Völund',
                 categories: ['Development'],
                 homepage: 'https://github.com/thomassloboda/runner',
-                maintainer: 'Thomas SLOBODA <thomas@sloboda.fr>'
             }
         }),
         new MakerDeb({

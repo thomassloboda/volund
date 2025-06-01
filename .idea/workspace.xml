@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="070b0e17-c77a-42ee-8338-570e4ebf30c7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/forge.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1748636623695</updated>
-      <workItem from="1748636625481" duration="28998000" />
+      <workItem from="1748636625481" duration="29908000" />
     </task>
     <servers />
   </component>
